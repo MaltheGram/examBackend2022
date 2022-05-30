@@ -11,8 +11,7 @@ import lombok.Setter;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter @Setter
@@ -25,8 +24,7 @@ public class RiderResponse {
     private Integer mountainPoint;
     private String riderName;
     private Integer age;
-    private TeamResponse teamResponse;
-
+    private String teamName;
 
     public RiderResponse(Rider rider) {
         this.id = rider.getId();
@@ -35,7 +33,6 @@ public class RiderResponse {
         this.mountainPoint = rider.getMountainPoint();
         this.riderName = rider.getRiderName();
         this.age = rider.getAge();
-        this.teamResponse = new TeamResponse(rider.getTeam().getTeamName(), rider.getTeam().getId());
     }
 
     public static List<RiderResponse> convertFromEntity(List<Rider> riders){
