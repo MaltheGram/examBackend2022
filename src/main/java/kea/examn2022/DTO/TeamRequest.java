@@ -14,7 +14,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class TeamRequest {
     private Long id;
-    //private Set<Rider> riderList;
     private String teamName;
 
 

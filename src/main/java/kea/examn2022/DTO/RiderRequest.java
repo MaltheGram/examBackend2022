@@ -22,5 +22,6 @@ public class RiderRequest {
     private Integer mountainPoint;
     private String riderName;
     private Integer age;
-    private Team team;
+    // Gives the Team entity as a part of the request body
+    //private TeamRequest team;
 }

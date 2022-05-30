@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Team")
@@ -13,7 +12,6 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +42,7 @@ public class Team {
         this.riderList.remove(rider);
         rider.setTeam(null);
     }
-    public void removeCandidates(Set<Rider> riders){
+    public void removeRiders(Set<Rider> riders){
         this.riderList.removeAll(riders);
         for (Rider rider : riders) {
             rider.setTeam(null);

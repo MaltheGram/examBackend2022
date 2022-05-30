@@ -44,31 +44,29 @@ class RiderControllerTest {
     }
 
     @Test
-    void getRefactors() throws Exception {
+    void getRiders() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/refactor")
+                        .get("/api/riders")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                //.andExpect(MockMvcResultMatchers.jsonPath("$[0]").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(4));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(8));
     }
 
     @Test
-    void getSingleEntity() throws Exception {
+    void getSingleRider() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/accounts/1")
+                        .get("/api/riders/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.RefactorFieldOne").value("1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.RefactorFieldTwo").value("2"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.RefactorFieldThree").value("3"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.RefactorFieldFour").value(4));
-    }
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.totalTime").value(4))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.SprintPoint").value(33))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.mountainPoint").value(23))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.riderName").value("UINTANA Nairo"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(28));
 
-
-    @Test
-    void addSingleEntity() {
     }
 }
