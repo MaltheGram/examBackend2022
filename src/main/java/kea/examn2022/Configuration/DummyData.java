@@ -1,47 +1,63 @@
 package kea.examn2022.Configuration;
 
-import kea.examn2022.Entity.RefactorEntity;
-import kea.examn2022.Entity.RefactorEntityTwo;
-import kea.examn2022.Repository.RefactorEntityRepository;
-import kea.examn2022.Repository.RefactorEntityTwoRepository;
+import kea.examn2022.Entity.Rider;
+import kea.examn2022.Entity.Team;
+import kea.examn2022.Repository.RiderRepository;
+import kea.examn2022.Repository.TeamRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @Component
 @Profile("!test")
 public class DummyData implements ApplicationRunner  {
 
-    RefactorEntityRepository refactorRepoOne;
-    RefactorEntityTwoRepository refactorRepoTwo;
+    RiderRepository riderRepository;
+    TeamRepository teamRepository;
 
-    public DummyData(RefactorEntityRepository refactorRepoOne, RefactorEntityTwoRepository refactorRepoTwo) {
-        this.refactorRepoOne = refactorRepoOne;
-        this.refactorRepoTwo = refactorRepoTwo;
+    public DummyData(RiderRepository riderRepository, TeamRepository refactorRepoTwo) {
+        this.riderRepository = riderRepository;
+        this.teamRepository = refactorRepoTwo;
     }
 
     public void fakeData(){
-        RefactorEntity re = new RefactorEntity("Entity1","Field2","Field3",1);
-        RefactorEntity re2 = new RefactorEntity("Entity2","Field2","Field3",2);
-        RefactorEntity re3 = new RefactorEntity("Entity3","Field2","Field3",3);
+        Team team1 = new Team("Team-Arkéa-Samsic");
+
+        Rider rider1 = new Rider(1,35,22,"PICHON Laurent",26);
+        Rider rider2 = new Rider(2,33,23,"QUINTANA Nairo",28);
+        Rider rider3 = new Rider(4,34,12,"BARGUIL Warren",30);
+
+        team1.addRidersToTeam(Set.of(rider1,rider2,rider3));
+
+        Team team2 = new Team("Groupama-FDJ");
+
+        Rider rider4 = new Rider(2,34,34,"STORER Michael",33);
+        Rider rider5 = new Rider(3,45,52," GENIETS Kevin",23);
+
+        team2.addRidersToTeam(Set.of(rider4,rider5));
+
+        Team team3 = new Team("DSM");
+
+        Rider rider6 = new Rider(3,12,31,"BOL Cees",27);
+        Rider rider7 = new Rider(3,41,52,"DEGENKOLB John",25);
+
+        team3.addRidersToTeam(Set.of(rider6,rider7));
 
 
-        RefactorEntityTwo ret = new RefactorEntityTwo("Entity4","Field2","Field3",3);
-        RefactorEntityTwo ret2 = new RefactorEntityTwo("Entity5","Field2","Field3",4);
-        RefactorEntityTwo ret3 = new RefactorEntityTwo("Entity6","Field2","Field3",5);
-
-        refactorRepoOne.save(re);
-        refactorRepoOne.save(re2);
-        refactorRepoOne.save(re3);
-
-        refactorRepoTwo.save(ret);
-        refactorRepoTwo.save(ret2);
-        refactorRepoTwo.save(ret3);
+        teamRepository.saveAll(List.of(
+                team1,
+                team2,
+                team3
+        ));
 
 
         System.out.println("CREATED TEST DATA");
@@ -51,8 +67,8 @@ public class DummyData implements ApplicationRunner  {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        refactorRepoOne.deleteAll();
-        refactorRepoTwo.deleteAll();
+        riderRepository.deleteAll();
+        teamRepository.deleteAll();
 
         fakeData();
 

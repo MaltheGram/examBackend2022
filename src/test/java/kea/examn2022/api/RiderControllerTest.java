@@ -1,19 +1,18 @@
 package kea.examn2022.api;
 
-import kea.examn2022.Entity.RefactorEntity;
-import kea.examn2022.Repository.RefactorEntityRepository;
+import kea.examn2022.Entity.Rider;
+import kea.examn2022.Repository.RiderRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,30 +20,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RefactorOneControllerTest {
+class RiderControllerTest {
 
     @Autowired
-    RefactorEntityRepository repo;
+    RiderRepository repo;
 
     @Autowired
     MockMvc mockMvc;
 
     @BeforeEach
-    void setUp(@Autowired RefactorEntityRepository repo) {
-        RefactorEntity entity = RefactorEntity.builder()
-                .RefactorFieldOne("1")
-                .RefactorFieldTwo("2")
-                .RefactorFieldThree("3")
-                .RefactorFieldFour(4)
-                .build();
-//        RefactorEntity entity = new RefactorEntity("1","2","3",4);
+    void setUp(@Autowired RiderRepository repo) {
+        Rider rider = new Rider(3,23,25,"Malthe",24);
 
-        repo.save(entity);
+
+        repo.save(rider);
 
     }
 
     @AfterEach
-    void tearDown(@Autowired RefactorEntityRepository repo) {
+    void tearDown(@Autowired RiderRepository repo) {
         repo.deleteAll();
 
     }
