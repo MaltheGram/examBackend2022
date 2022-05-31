@@ -20,7 +20,7 @@ public class Rider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    private Integer totalTime;
+    private LocalTime totalTime;
     private Integer sprintPoint;
     private Integer mountainPoint;
     private String riderName;
@@ -30,7 +30,7 @@ public class Rider {
     private Team team;
 
 
-    public Rider(Integer totalTime, Integer sprintPoint, Integer mountainPoint, String riderName, Integer age) {
+    public Rider(LocalTime totalTime, Integer sprintPoint, Integer mountainPoint, String riderName, Integer age) {
         this.totalTime = totalTime;
         this.sprintPoint = sprintPoint;
         this.mountainPoint = mountainPoint;

@@ -17,7 +17,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class RiderRequest {
     private Long id;
-    private Integer totalTime;
+    private String totalTime;
     private Integer sprintPoint;
     private Integer mountainPoint;
     private String riderName;

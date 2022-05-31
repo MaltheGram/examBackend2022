@@ -8,6 +8,7 @@ import kea.examn2022.Service.DurationFormatter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.boot.convert.DurationFormat;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RiderResponse {
     private Long id;
-    private Integer totalTime;
+    private LocalTime totalTime;
     private Integer sprintPoint;
     private Integer mountainPoint;
     private String riderName;

@@ -14,6 +14,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
+import java.time.Duration;
+import java.time.LocalTime;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,7 +33,7 @@ class RiderControllerTest {
 
     @BeforeEach
     void setUp(@Autowired RiderRepository repo) {
-        Rider rider = new Rider(3,23,25,"Malthe",24);
+        Rider rider = new Rider(LocalTime.of(1,5,3),23,25,"Malthe",24);
 
 
         repo.save(rider);

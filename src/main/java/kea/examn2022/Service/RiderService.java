@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,7 +47,7 @@ public class RiderService {
     public void addRider(RiderRequest rider) {
         Rider r = new Rider(rider.getRiderName());
         r.setRiderName(rider.getRiderName());
-        r.setTotalTime(rider.getTotalTime());
+        r.setTotalTime(LocalTime.parse(rider.getTotalTime()));
         r.setSprintPoint(rider.getSprintPoint());
         r.setMountainPoint(rider.getMountainPoint());
         r.setAge(rider.getAge());
@@ -57,7 +60,7 @@ public class RiderService {
         riderToEdit.setAge(rider.getAge());
         riderToEdit.setSprintPoint(rider.getSprintPoint());
         riderToEdit.setMountainPoint(rider.getMountainPoint());
-        riderToEdit.setTotalTime(rider.getTotalTime());
+        riderToEdit.setTotalTime(LocalTime.parse(rider.getTotalTime()));
 
         Rider r = riderRepository.save(riderToEdit);
         return new RiderResponse(r);
